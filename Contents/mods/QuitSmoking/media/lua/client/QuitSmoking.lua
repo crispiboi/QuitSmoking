@@ -6,7 +6,6 @@ local function initQuitSmoking(_player)
     player:getModData().incremental = 1.0;
     player:getModData().formersmoker = false;
     player:getModData().version = 1.0;
-    print("quit smoking version:" .. player:getModData().version);
 end
 
 local function checkQuitSmoking()
@@ -60,7 +59,7 @@ end
 local function smokerUpdate()
     local player = getPlayer();
     local playerdata = player:getModData();
-    selection = 100 -  math.floor(playerdata.chancetoquit * 100) - math.floor(playerdata.incremental);
+    selection = math.max((100 -  math.floor(playerdata.chancetoquit * 100) - math.floor(playerdata.incremental)),0);
     magicnumber = ZombRand(0,selection);
     print("selection:" .. selection .. " magic number:" ..magicnumber);
     -- add trait check to resolve bug where player can obtain smoker trait after this function running
