@@ -3,8 +3,10 @@ require('NPCs/MainCreationMethods');
 local function initQuitSmoking(_player)
     local player = _player;
     player:getModData().chancetoquit = 0;
-    player:getModData().incremental = 1;
+    player:getModData().incremental = 1.0;
     player:getModData().formersmoker = false;
+    player:getModData().version = 1.0;
+    print("quit smoking version:" .. player:getModData().version);
 end
 
 local function checkQuitSmoking()
