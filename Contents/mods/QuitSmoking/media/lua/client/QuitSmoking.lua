@@ -31,14 +31,14 @@ local function quitChanceUpdate(_player, _playerdata)
         and playerdata.chancetoquit <=1
     then
         if player:HasTrait("Lucky") then
-            player.incremental = player.incremental + 0.01 
+            player.incremental = player.incremental + 0.01;
             newchance = ZombRand(player.incremental,100)/33600 ;
         end
         if player:HasTrait("Unlucky") then
-            player.incremental = player.incremental + 0.002
+            player.incremental = player.incremental + 0.002;
             newchance = ZombRand(player.incremental,100)/134400 ;
         else 
-            player.incremental = player.incremental + 0.005
+            player.incremental = player.incremental + 0.005;
             newchance =ZombRand(player.incremental,100)/67200;
         end
         print("incremental value:");
