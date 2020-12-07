@@ -1,0 +1,4 @@
+name=Quit Smoking
+id=QuitSmoking
+description=Adds the ability to remove the smoker trait if you cease smoking over time.
+poster=poster.png
