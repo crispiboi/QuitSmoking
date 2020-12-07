@@ -3,8 +3,11 @@ id=2142069709
 title=Quit Smoking
 description=Allows you to eventually lose the smoker trait over time from abstaining from cigarettes. The chance to quit increases as you approach 4 weeks. If you were a smoker, quit, and smoke again you will regain the smoker trait.
 description=
-description=Update 10/1/2020 :
-description=Fixed permanent stress bug
+description=https://github.com/crispiboi/QuitSmoking
+description=
+description=Update 
+description=12/7/2020: Fixed non-smoker gaining smoker trait bug. Made it more fair to quit as player approaches threshold.
+description=10/1/2020 :Fixed permanent stress bug
 description=
 description=It's possible, but unlikely to quit in less than 2 weeks.
 description=If your character is lucky, you will quit in about 2 weeks.
@@ -13,7 +16,7 @@ description=If your character is neither lucky nor unlucky, you will quit in abo
 description=
 description=Mechanics:
 description=Every hour, a tiny incremental value is added to the chance to quit, which grows over time at a rate based on the chart above.
-description=Every day, a selection roll is done based on the chance to quit.  This value is rounded to the nearest whole number. 
+description=Every day, a selection roll is done based on the chance to quit.  This value is rounded to the nearest whole number.
 description=formula : selection = 100 -  math.floor(playerdata.chancetoquit * 100);
 description=Every day, a magic number is rolled based on a range from 0 to the selection number.
 description=formula : magicnumber = ZombRand(0,selection);
