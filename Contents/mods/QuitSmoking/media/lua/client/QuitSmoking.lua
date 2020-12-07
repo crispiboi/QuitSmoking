@@ -31,18 +31,17 @@ local function quitChanceUpdate(_player, _playerdata)
         and playerdata.chancetoquit <=1
     then
         if player:HasTrait("Lucky") then
-            player.incremental = player.incremental + 0.01;
-            newchance = ZombRand(player.incremental,100)/33600 ;
+            newchance = ZombRand(1,100)/33600 ;
+            playerdata.incremental = playerdata.incremental + 0.01 ;
         end
         if player:HasTrait("Unlucky") then
-            player.incremental = player.incremental + 0.002;
-            newchance = ZombRand(player.incremental,100)/134400 ;
-        else 
-            player.incremental = player.incremental + 0.005;
-            newchance =ZombRand(player.incremental,100)/67200;
+            newchance = ZombRand(1,100)/134400 ;
+            playerdata.incremental = playerdata.incremental + 0.002 ;
+        else newchance =ZombRand(1,100)/67200;
+            playerdata.incremental = playerdata.incremental + 0.005 ;
         end
-        print("incremental value:");
-        print(player.incremental);
+        print("incremental:");
+        print(playerdata.incremental);
         print("chance to quit:");
         print(playerdata.chancetoquit);
         print("new chance:" .. newchance);
@@ -51,6 +50,7 @@ local function quitChanceUpdate(_player, _playerdata)
 
     if player:getTimeSinceLastSmoke() <= 2
     then  playerdata.chancetoquit = 0 ;
+        playerdata.incremental = 1;
     end
 
 end
@@ -58,7 +58,7 @@ end
 local function smokerUpdate()
     local player = getPlayer();
     local playerdata = player:getModData();
-    selection = 100 -  math.floor(playerdata.chancetoquit * 100);
+    selection = 100 -  math.floor(playerdata.chancetoquit * 100) - math.floor(playerdata.incremental);
     magicnumber = ZombRand(0,selection);
     print("selection:" .. selection .. " magic number:" ..magicnumber);
     -- add trait check to resolve bug where player can obtain smoker trait after this function running
@@ -74,11 +74,9 @@ local function smokerUpdate()
         player:playSound("GainExperienceLevel");
     end 
 
-    --reset all values if the player smokes
     if playerdata.formersmoker == true
     and player:getTimeSinceLastSmoke() <=24 
         then playerdata.chancetoquit = 0;
-        playerdata.incremental = 1;
         playerdata.formersmoker = false;
         player:getTraits():add("Smoker");  
         player:Say("I'm hooked on smokes again.")
