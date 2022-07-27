@@ -71,9 +71,9 @@ local function smokerUpdate()
         player:getTraits():remove("Smoker");
         print("smoking ceased");
         --insert a delay, or find a good sound to indicate this happens
-        
         playerdata.formersmoker = true;
-        player:getStats():setStressFromCigarettes(0);
+        --changed this from 0 to .00001 after recomendation from zerogab on steam to resolve infinite stress
+        player:getStats():setStressFromCigarettes(0.0001);
         player:playSound("GainExperienceLevel");
     end 
 
